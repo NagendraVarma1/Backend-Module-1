@@ -18,7 +18,7 @@ const requestHandler = (req, res) => {
     });
     req.on("end", () => {
       const parsedBody = Buffer.concat(body).toString();
-      const message = parsedBody.split("=")[1];
+      const message = parsedBody.split("=")[0];
       fs.writeFileSync("message.txt", message);
     });
     res.statusCode = 302;
@@ -33,4 +33,7 @@ const requestHandler = (req, res) => {
   res.end();
 };
 
-module.exports = requestHandler;
+module.exports ={ 
+    handler: requestHandler,
+    someText: "Some Hard coded text here"
+};
